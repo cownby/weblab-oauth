@@ -22,8 +22,9 @@ class Configuration
 	private function __construct() 
 	{	
 		$this->_configFile = "C:/config/configAPI.ini";
+		printP("Accessing config file ".$this->_configFile);
 		$this->_configArray = parse_ini_file ( $this->_configFile );
-		dump ($this->_configArray);
+		//dump ($this->_configArray);
 	}
 	
 	public function Get($key) { return $this->_configArray[$key]; }
