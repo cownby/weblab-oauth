@@ -1,6 +1,7 @@
-## WebLab 2015 OAuthentication Exercise ##
+## WebLab 2015 OAuth Exercise ##
+(Open standard for Authorization)
 
-Access my google calendar(s) through the google API
+Access google calendar(s) through the google API. It simply dumps the data to verify the calendar was accessed.
 
 ### Flow ###
 index.php 
