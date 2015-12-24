@@ -2,12 +2,12 @@
 	require "Configuration.php";
 	$config = Configuration::Instance();
 	
-	$callback = "http://localhost/" . $config->get('webroot') . "oauth2callback.php";
+	$callback = $config->get('webhost') . $config->get('webroot') . "oauth2callback.php";
 
 if(isset($_GET['code'])){
 
   $code = $_GET['code'];
-  printP( "_GET[code]: " .$code);
+  //printP( "_GET[code]: " .$code);
 
   $params = array(
       "code" => $code,
@@ -39,22 +39,13 @@ if(isset($_GET['code'])){
 		print "<pre>".print_r(curl_error($curl))."</pre>";
 	}
 	
-	print "<br />curl response: <br />";
-  print "<pre>".print_r(json_decode($resp), true)."</pre>";
+	//print "<br />curl response, just to see: <br />";
+  //print "<pre>".print_r(json_decode($resp), true)."</pre>";
+  
   // Close request to clear up some resources
   curl_close($curl);
   $r = json_decode($resp);
   $token = $r->access_token;
-  //   https://www.googleapis.com/auth/calendar
-  //   /users/me/calendarList
-
-/*  $params = array(
-      "code" => $code,
-      "client_id" => "733929298649-a32ahoj5jio55csf1svs3et5sftvgi4n.apps.googleusercontent.com",
-      "client_secret" => "SPPpUr3mzWNhG8kyYTLqro-N",
-      "redirect_uri" => $callback,
-      "grant_type" => "authorization_code"
-  );*/
 
 
   $url ='https://www.googleapis.com/calendar/v3/users/me/calendarList?access_token='.$token;
@@ -66,7 +57,7 @@ if(isset($_GET['code'])){
 //  curl_setopt($ch,CURLOPT_HEADER, false);
 
   $output=curl_exec($ch);
-  printP('html special chars ' .htmlspecialchars($output));
+  //printP('html special chars ' .htmlspecialchars($output));
   curl_close($ch);
 	if ($output == FALSE) 
 	{

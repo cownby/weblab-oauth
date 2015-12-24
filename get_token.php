@@ -1,4 +1,10 @@
 <?php
+
+	// This is the token controller which gets user authentication token from google
+	
+	//read the configuration file as specified in this class.
+	//I've since learned that singletons make no sense in a stateless php environment,
+	//  but it was a good exercise.
 	require_once "Configuration.php";
 	$config = Configuration::Instance();
 
